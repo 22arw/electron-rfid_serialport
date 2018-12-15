@@ -6,11 +6,7 @@ import * as SerialPort from 'serialport';
 })
 export class SerialService {
 
-  serialPort: typeof SerialPort;
+  serialPort: typeof SerialPort = window['require']('serialport');
 
-  constructor() {
-    if (this.serialPort()) {
-      // this.serialPort = window.require('serialport');
-    }
-  }
+  constructor() { }
 }
