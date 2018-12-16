@@ -28,15 +28,9 @@ export class AppComponent implements OnInit {
     console.log(this.comPorts);
   }
 
-  // getPorts() {
-  //   this.serial.serialPort.list(function (err, ports) {
-  //     ports.forEach(function(port) {
-  //       this.comPorts.push(port);
-  //     });
-  //   });
-  // }
-
   getPorts() {
-    this.comPorts = this.serial.serialPort.list();
+    this.serial.serialPort.list((err, ports) => {
+      ports.forEach(port => { this.comPorts.push(port); });
+    });
   }
 }
