@@ -6,7 +6,7 @@ function createWindow() {
     win = new BrowserWindow({
         width: 900,
         height: 600,
-        backgroundColor: '#e3e3e3'
+        // backgroundColor: '#e3e3e3'
     });
 
     win.loadURL(`file://${__dirname}/dist/electron-angular-serialport/index.html`);

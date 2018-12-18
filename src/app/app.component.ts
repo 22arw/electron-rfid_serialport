@@ -29,8 +29,37 @@ export class AppComponent implements OnInit {
   }
 
   getPorts() {
+    this.comPorts = [];
     this.serial.serialPort.list((err, ports) => {
       ports.forEach(port => { this.comPorts.push(port); });
     });
+  }
+
+  connectPort() {
+    const port = new this.serial.serialPort('/dev/cu.usbmodem14301', { baudRate: 115200 });
+    const parser = new this.serial.serialPort.parsers.Readline({ delimiter: '\r\n'});
+    port.pipe(parser);
+    parser.on('data', function(data) {
+      console.log(data);
+    });
+    // port.open(function (err) {
+    //   if (err) {
+    //     console.log(err);
+    //   }
+    //   parser.on('data', function (data) {
+    //     console.log('Data: ', data);
+    //   });
+    // });
+    // parser.on('data', function(data) {
+    //   console.log(data);
+    // });
+    // port.open(function (err) {
+    //   if (err) {
+    //     console.log(err);
+    //   }
+    //   port.on('data', function(data) {
+    //     console.log(data);
+    //   });
+    // });
   }
 }
