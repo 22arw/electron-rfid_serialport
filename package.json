@@ -1,7 +1,7 @@
 {
   "name": "electron-angular-serialport",
   "repository": {
-    "url": "https://github.com/callen5914/electron-rfid_serialport.git"
+    "url": "https://github.com/22arw/electron-rfid_serialport"
   },
   "version": "0.0.0",
   "main": "main.js",
