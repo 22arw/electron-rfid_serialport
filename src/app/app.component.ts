@@ -42,24 +42,5 @@ export class AppComponent implements OnInit {
     parser.on('data', function(data) {
       console.log(data);
     });
-    // port.open(function (err) {
-    //   if (err) {
-    //     console.log(err);
-    //   }
-    //   parser.on('data', function (data) {
-    //     console.log('Data: ', data);
-    //   });
-    // });
-    // parser.on('data', function(data) {
-    //   console.log(data);
-    // });
-    // port.open(function (err) {
-    //   if (err) {
-    //     console.log(err);
-    //   }
-    //   port.on('data', function(data) {
-    //     console.log(data);
-    //   });
-    // });
   }
 }
