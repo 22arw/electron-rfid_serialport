@@ -6,10 +6,18 @@ import { AppComponent } from './app.component';
 import { SerialService } from './serial.service';
 import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RfidComponent } from './rfid/rfid.component';
+import { PortComponent } from './port/port.component';
+import { RunnerComponent } from './runner/runner.component';
+import { LapComponent } from './lap/lap.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RfidComponent,
+    PortComponent,
+    RunnerComponent,
+    LapComponent
   ],
   imports: [
     BrowserModule,

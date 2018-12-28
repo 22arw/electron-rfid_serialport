@@ -1,21 +1,59 @@
-<header class="header-6">
-  <div class="branding">
-      <a href="..." class="nav-link">
-          <clr-icon shape="vm-bug"></clr-icon>
-          <span class="title">Electron Serial Port</span>
-      </a>
-  </div>
-  <div class="header-actions">
-      <clr-dropdown>
-          <button class="nav-icon" clrDropdownTrigger>
-              <clr-icon shape="cog"></clr-icon>
-              <clr-icon shape="caret down"></clr-icon>
-          </button>
-          <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-            <a clrDropdownItem *ngFor="let port of comPorts">{{port.comName}}</a>
-            <a clrDropdownItem (click)="connectPort()">Refresh Ports</a>
-            
-          </clr-dropdown-menu>
-      </clr-dropdown>
-  </div>
-</header>
+<div class="main-container">
+    <div class="alert alert-app-level alert-danger" role="alert">
+        <div class="alert-items">
+            <div class="alert-item static">
+                <div class="alert-icon-wrapper">
+                    <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                </div>
+                <div class="alert-text">
+                    No Connection To RFID Reader
+                </div>
+                <div class="alert-actions">
+                    <button class="btn alert-action">Connect</button>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="close" aria-label="Close">
+            <clr-icon aria-hidden="true" shape="close"></clr-icon>
+        </button>
+    </div>
+    <header class="header-6"></header>
+    <div class="content-container">
+        <div class="content-area">
+            <router-outlet></router-outlet>
+        </div>
+        <clr-vertical-nav [clrVerticalNavCollapsible]="collapsed">
+            <clr-vertical-nav-group routerLinkActive="active">
+                <clr-icon shape="bolt" clrVerticalNavIcon></clr-icon>
+                Step 1. Ports
+                <clr-vertical-nav-group-children>
+                    <a clrVerticalNavLink routerLink="./port" routerLinkActive="active">
+                        Connect To RFID Reader
+                    </a>
+                </clr-vertical-nav-group-children>
+            </clr-vertical-nav-group>
+            <clr-vertical-nav-group routerLinkActive="active">
+                <clr-icon shape="users" clrVerticalNavIcon></clr-icon>
+                Step 2. Runners
+                <clr-vertical-nav-group-children>
+                    <a clrVerticalNavLink routerLink="./runner" routerLinkActive="active">
+                        Register Runners
+                    </a>
+                </clr-vertical-nav-group-children>
+            </clr-vertical-nav-group>
+            <clr-vertical-nav-group routerLinkActive="active">
+                <clr-icon shape="wrench" clrVerticalNavIcon></clr-icon>
+                Step 3. Configuration
+                <clr-vertical-nav-group-children>
+                    <a clrVerticalNavLink routerLink="./lap" routerLinkActive="active">
+                        Configure Lap Test
+                    </a>
+                </clr-vertical-nav-group-children>
+            </clr-vertical-nav-group>
+            <a clrVerticalNavLink routerLinkActive="active" routerLink="./credit">
+                <clr-icon shape="atom" clrVerticalNavIcon></clr-icon>
+                Step 4. Count Laps
+            </a>
+        </clr-vertical-nav>
+    </div>
+</div>

@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { } from 'electron';
 import * as Serialport from 'serialport';
-import { SerialService } from './serial.service';
+import { SerialService } from '../serial.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-port',
+  templateUrl: './port.component.html',
+  styleUrls: ['./port.component.css']
 })
-export class AppComponent implements OnInit {
+export class PortComponent implements OnInit {
 
-  title = 'electron-angular-serialport';
-  collapsed = false;
   comPorts = [];
+  selectedPort = '';
 
   constructor(private serial: SerialService) {
     let isElectron: boolean = window && window['process'] && window['process'].type;
@@ -24,24 +22,17 @@ export class AppComponent implements OnInit {
     }
   }
 
+
   ngOnInit() {
-    this.getPorts();
+    this.listPorts();
     console.log(this.comPorts);
   }
 
-  getPorts() {
+  listPorts() {
     this.comPorts = [];
     this.serial.serialPort.list((err, ports) => {
       ports.forEach(port => { this.comPorts.push(port); });
     });
   }
 
-  connectPort() {
-    const port = new this.serial.serialPort('/dev/cu.usbmodem14301', { baudRate: 115200 });
-    const parser = new this.serial.serialPort.parsers.Readline({ delimiter: '\r\n'});
-    port.pipe(parser);
-    parser.on('data', function(data) {
-      console.log(data);
-    });
-  }
 }

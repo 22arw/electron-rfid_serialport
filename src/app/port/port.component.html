@@ -1,0 +1,23 @@
+<clr-datagrid [(clrDgSingleSelected)]="selectedPort">
+    <clr-dg-column>ID</clr-dg-column>
+    <clr-dg-column>Port</clr-dg-column>
+    <clr-dg-column>Manufacturer</clr-dg-column>
+
+    <clr-dg-row *clrDgItems="let port of comPorts; index as i;" [clrDgItem]="port">
+        <clr-dg-cell>{{i + 1}}</clr-dg-cell>
+        <clr-dg-cell>{{port.comName}}</clr-dg-cell>
+        <clr-dg-cell>{{port.manufacturer}}</clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>{{comPorts.length}} ports found</clr-dg-footer>
+</clr-datagrid>
+
+<button type="button" class="btn btn-primary btn-icon">
+    <clr-icon shape="refresh"></clr-icon>
+    Refresh Ports List
+</button>
+
+<button type="button" class="btn btn-success btn-icon">
+    <clr-icon shape="connect"></clr-icon>
+    Connect To Port
+</button>
