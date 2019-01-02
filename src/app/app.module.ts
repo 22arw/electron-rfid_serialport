@@ -10,6 +10,7 @@ import { RfidComponent } from './rfid/rfid.component';
 import { PortComponent } from './port/port.component';
 import { RunnerComponent } from './runner/runner.component';
 import { LapComponent } from './lap/lap.component';
+import { PortService } from './core/port.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { LapComponent } from './lap/lap.component';
     BrowserAnimationsModule
   ],
   providers: [
-    SerialService
+    SerialService,
+    PortService
   ],
   bootstrap: [AppComponent]
 })

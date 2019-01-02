@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { } from 'electron';
 import * as Serialport from 'serialport';
 import { SerialService } from './serial.service';
+import { PortService, Port } from './core/port.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +14,9 @@ export class AppComponent implements OnInit {
 
   title = 'electron-angular-serialport';
   collapsed = false;
-  comPorts = [];
+  connectedPort;
 
-  constructor(private serial: SerialService) {
+  constructor(private serial: SerialService, private port: PortService) {
     let isElectron: boolean = window && window['process'] && window['process'].type;
 
     if (isElectron) {
@@ -25,23 +27,20 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getPorts();
-    console.log(this.comPorts);
+    this.getPort();
   }
 
-  getPorts() {
-    this.comPorts = [];
-    this.serial.serialPort.list((err, ports) => {
-      ports.forEach(port => { this.comPorts.push(port); });
-    });
+  getPort() {
+    console.log('Getting Port');
+    this.port.getPort().subscribe( data => this.connectedPort = data);
   }
 
-  connectPort() {
-    const port = new this.serial.serialPort('/dev/cu.usbmodem14301', { baudRate: 115200 });
-    const parser = new this.serial.serialPort.parsers.Readline({ delimiter: '\r\n'});
-    port.pipe(parser);
-    parser.on('data', function(data) {
-      console.log(data);
-    });
-  }
+  // connectPort() {
+  //   const port = new this.serial.serialPort('/dev/cu.usbmodem14301', { baudRate: 115200 });
+  //   const parser = new this.serial.serialPort.parsers.Readline({ delimiter: '\r\n'});
+  //   port.pipe(parser);
+  //   parser.on('data', function(data) {
+  //     console.log(data);
+  //   });
+  // }
 }

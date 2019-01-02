@@ -12,12 +12,12 @@
     <clr-dg-footer>{{comPorts.length}} ports found</clr-dg-footer>
 </clr-datagrid>
 
-<button type="button" class="btn btn-primary btn-icon">
+<button type="button" class="btn btn-primary btn-icon" (click)="listPorts()">
     <clr-icon shape="refresh"></clr-icon>
     Refresh Ports List
 </button>
 
-<button type="button" class="btn btn-success btn-icon">
+<button type="button" class="btn btn-success btn-icon" [disabled]="!selectedPort" (click)="portSelection(selectedPort.comName)">
     <clr-icon shape="connect"></clr-icon>
     Connect To Port
 </button>
